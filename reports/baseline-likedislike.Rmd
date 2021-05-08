@@ -25,11 +25,6 @@ dados = read_csv(here::here("data/satisfacoes.csv"),
 
 glimpse(dados)
 ```
-```{r}
-dados %>% 
-    select(scenario) %>%
-    distinct()
-```
 
 
 ```{r}

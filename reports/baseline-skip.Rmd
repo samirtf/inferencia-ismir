@@ -25,16 +25,11 @@ dados = read_csv(here::here("data/satisfacoes.csv"),
 
 glimpse(dados)
 ```
-```{r}
-dados %>% 
-    select(scenario) %>%
-    distinct()
-```
 
 
 ```{r}
 comparacao1 = dados %>% 
-    filter(scenario %in% c("baseline", "like/dislike"))
+    filter(scenario %in% c("baseline", "skip"))
 
 theta <- function(d, i) {
     agrupado = d %>% 
@@ -42,7 +37,7 @@ theta <- function(d, i) {
         group_by(scenario) %>% 
         summarise(media = mean(satisfaction))
     b = agrupado %>% filter(scenario == "baseline") %>% pull(media)
-    l = agrupado %>% filter(scenario == "like/dislike") %>% pull(media)
+    l = agrupado %>% filter(scenario == "skip") %>% pull(media)
     l - b
 }
 
